@@ -1,3 +1,7 @@
+:root {
+  --font-sora: "Sora Variable", sans-serif;
+  --font-dm: "DM Sans", sans-serif;
+}
 @import "tailwindcss";
 @theme {
   --color-navy:#14213D; --color-navy2:#1D2F55; --color-cream:#F4EDE0; --color-cream2:#FBF8F2;

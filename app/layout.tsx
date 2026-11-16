@@ -1,24 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Sora, DM_Sans } from "next/font/google";
+import "@fontsource-variable/sora";
+import "@fontsource-variable/dm-sans";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import JsonLd from "@/components/JsonLd";
 import Logo from "@/components/Logo";
 import { Progress, Cursor } from "@/components/FX";
 import { SITE, PAGES } from "@/lib/content";
-const sora = Sora({
-  subsets: ["latin"],
-  variable: "--font-sora",
-  weight: ["300", "400", "500"],
-  display: "swap",
-});
-
-const dm = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm",
-  display: "swap",
-});
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: "DAEOL | AEO & GEO Agency: AI Search Optimization",
@@ -31,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     { "@type":"Organization","@id":`${SITE.url}/#org`,name:SITE.name,url:SITE.url,email:SITE.email,logo:`${SITE.url}/favicon.svg`,areaServed:["US","CA","GB","AU"],sameAs:[] /* TODO: add LinkedIn, X, Crunchbase */ },
     { "@type":"WebSite",name:SITE.name,url:SITE.url,publisher:{"@id":`${SITE.url}/#org`} }] };
   return (
-    <html lang="en" className={`${sora.variable} ${dm.variable}`}><body>
+      <html lang="en"><body>
       <JsonLd data={org} /><Progress /><Cursor /><Nav />{children}
       <footer className="bg-navy px-6 py-14 text-sm text-cream/75"><div className="mx-auto grid max-w-[1160px] gap-8 md:grid-cols-3">
         <div><Logo className="h-8 text-cream" /><p className="mt-3">DAEOL is an AI search optimization agency helping businesses in the USA, Canada, the UK and Australia become easier to discover, understand, and trust across AI-powered and traditional search.</p></div>
