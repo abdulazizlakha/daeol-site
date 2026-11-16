@@ -1,7 +1,0 @@
-# DAEOL
-> AEO, GEO and SEO agency serving businesses in the USA, Canada, UK and Australia.
-
-- [Services](https://daeol.com/services): AI visibility audit, AEO, GEO, technical SEO and schema, content, reporting
-- [Pricing](https://daeol.com/pricing): Free audit; Basic Answer $498/mo; Premium from $1,399/mo
-- [FAQ](https://daeol.com/faq): What AEO and GEO are, timelines, guarantees
-- [Free audit](https://daeol.com/audit): Request an AI visibility audit
