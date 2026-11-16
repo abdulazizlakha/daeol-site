@@ -7,8 +7,18 @@ import JsonLd from "@/components/JsonLd";
 import Logo from "@/components/Logo";
 import { Progress, Cursor } from "@/components/FX";
 import { SITE, PAGES } from "@/lib/content";
-const sora = Sora({ subsets: ["latin"], variable: "--font-sora", weight: ["300", "400", "500"] });
-const dm = DM_Sans({ subsets: ["latin"], variable: "--font-dm" });
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  weight: ["300", "400", "500"],
+  display: "swap",
+});
+
+const dm = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm",
+  display: "swap",
+});
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: "DAEOL | AEO & GEO Agency: AI Search Optimization",

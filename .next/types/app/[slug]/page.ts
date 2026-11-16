@@ -1,4 +1,4 @@
-// File: D:\daeol-sitenew\app\[slug]\page.tsx
+// File: D:\daeol-site\app\[slug]\page.tsx
 import * as entry from '../../../../app/[slug]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
