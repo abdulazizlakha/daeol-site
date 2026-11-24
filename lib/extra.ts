@@ -16,7 +16,7 @@ export const EXTRA: Record<string, Extra> = {
   { h: "Same method, different questions", p: ["A SaaS buyer asks for comparisons and integrations. A homeowner asks who is nearby and trusted. A patient asks about safe, reputable providers. We map the questions that matter in your industry and build answers around them.", "The examples above are illustrative use cases, not client results."] }] },
  pricing: { faq: [7, 4, 3], prose: [
   { h: "How terms and scope work", p: ["Every package is month to month after its minimum term. Scope is agreed in writing before work starts, so you know what is included.", "Premium costs less per month on the 6-month term because the longer commitment lets us plan bigger content and authority work."], li: ["Prices are in USD", "Audit Check is free with no obligation", "Reporting is included in paid plans"] }] },
- faq: { faq: [], prose: [{ h: "Still have a question?", p: ["Send it with your free audit request or email hello@daeol.com and we’ll answer in plain language."] }] },
+ faq: { faq: [], prose: [{ h: "Still have a question?", p: ["Send it with your free audit request or email team@daeol.si and we’ll answer in plain language."] }] },
  audit: { faq: [6, 3], prose: [
   { h: "What happens after you submit", p: ["We review your website and run an initial AI citation check on selected prompts for your market. You receive a short, prioritized write-up by email, usually with a clear first step.", "There is no obligation to continue."], li: ["Technical, content and structure basics", "Selected AI prompt checks", "Initial competitor visibility review"] }] },
 };

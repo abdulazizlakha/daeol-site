@@ -23,7 +23,7 @@ export default function AuditForm() {
       <label className="block text-sm md:col-span-2">Additional information<textarea name="notes" rows={4} className="mt-1 w-full rounded-xl border border-line p-3" /></label>
       <div className="md:col-span-2">
         <button disabled={s === "sending"} className="rounded-full bg-coral px-7 py-3.5 font-medium text-navy transition hover:-translate-y-0.5 disabled:opacity-60">{s === "sending" ? "Sending…" : "Request My Free Audit"}</button>
-        {s === "err" && <p role="alert" className="mt-3 text-sm text-red-700">Something went wrong. Please email hello@daeol.com.</p>}
+        {s === "err" && <p role="alert" className="mt-3 text-sm text-red-700">Something went wrong. Please email team@daeol.si.</p>}
       </div>
     </form>);
 }
