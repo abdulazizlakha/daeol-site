@@ -1,4 +1,5 @@
 export const SITE = { name: "DAEOL", url: "https://www.daeol.si", email: "team@daeol.si" };
+export const FORM_ENDPOINT = "https://formspree.io/f/mppdknzv";
 export type Card = { t: string; d: string; tag?: string };
 export type Block = { k: "cards"; items: Card[]; note?: string } | { k: "steps"; items: Card[]; note?: string } | { k: "pricing" } | { k: "faq" } | { k: "form" };
 export type PageData = { slug: string; nav: string; title: string; desc: string; h1: string; intro: string; blocks: Block[] };

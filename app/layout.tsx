@@ -5,8 +5,9 @@ import "@fontsource-variable/dm-sans";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import JsonLd from "@/components/JsonLd";
-import Logo from "@/components/Logo";
 import { Progress, Cursor } from "@/components/FX";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import Footer from "@/components/Footer";
 import { SITE, PAGES } from "@/lib/content";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -27,13 +28,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     { "@type":"Organization","@id":`${SITE.url}/#org`,name:SITE.name,url:SITE.url,email:SITE.email,logo:`${SITE.url}/icon.png`,areaServed:["US","CA","GB","AU"],sameAs:[] /* TODO: add LinkedIn, X, Crunchbase */ },
     { "@type":"WebSite",name:SITE.name,url:SITE.url,publisher:{"@id":`${SITE.url}/#org`} }] };
   return (
-      <html lang="en"><body>
-      <JsonLd data={org} /><Progress /><Cursor /><Nav />{children}
-      <footer className="bg-navy px-6 py-14 text-sm text-cream/75"><div className="mx-auto grid max-w-[1160px] gap-8 md:grid-cols-3">
-        <div><Logo className="h-8 text-cream" /><p className="mt-3">DAEOL is an AI search optimization agency helping businesses in the USA, Canada, the UK and Australia become easier to discover, understand, and trust across AI-powered and traditional search.</p></div>
-        <nav aria-label="Footer"><p className="mb-3 text-cream">Explore</p><ul className="space-y-2">{PAGES.map(p => <li key={p.slug}><Link href={`/${p.slug}`} className="hover:text-white">{p.nav}</Link></li>)}</ul></nav>
-        <div><p className="mb-3 text-cream">Contact</p><a href={`mailto:${SITE.email}`} className="hover:text-white">{SITE.email}</a>
-          <p className="mt-6 text-xs">© {new Date().getFullYear()} DAEOL. DAEOL does not claim partnerships with or endorsements from Google, OpenAI, Perplexity, or Microsoft.</p></div>
-      </div></footer>
-    </body></html>);
+      <html lang="en">
+      <body>
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        <JsonLd data={org} /><Progress /><Cursor /><Nav />{children}
+        <Footer site={SITE} pages={PAGES} />
+      </body></html>);
 }
