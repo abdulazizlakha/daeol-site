@@ -1,24 +1,11 @@
-import type { MetadataRoute } from "next";
-import { PAGES, SITE } from "@/lib/content";
-
-type Entry = MetadataRoute.Sitemap[number];
+import type { MetadataRoute } from 'next';
+import { SITE } from '@/lib/site';
+import { POSTS } from '@/lib/posts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
-  const home: Entry = {
-    url: SITE.url,
-    priority: 1,
-    lastModified: now,
-    changeFrequency: "weekly",
-  };
-
-  const pages: Entry[] = PAGES.map((p) => ({
-    url: `${SITE.url}/${p.slug}`,
-    priority: p.slug === "audit" || p.slug === "services" ? 0.9 : 0.8,
-    lastModified: now,
-    changeFrequency: "monthly",
-  }));
-
-  return [home, ...pages];
+  const pages = ['', '/why-daeol', '/services', '/platforms', '/process', '/industries', '/pricing', '/faq', '/audit', '/blog'];
+  return [
+    ...pages.map((p) => ({ url: SITE.url + p, changeFrequency: 'monthly' as const, priority: p === '' ? 1 : 0.8 })),
+    ...POSTS.map((p) => ({ url: `${SITE.url}/blog/${p.slug}`, lastModified: p.date, changeFrequency: 'monthly' as const, priority: 0.6 })),
+  ];
 }

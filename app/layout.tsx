@@ -1,37 +1,52 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import "@fontsource-variable/sora";
-import "@fontsource-variable/dm-sans";
-import "./globals.css";
-import Nav from "@/components/Nav";
-import JsonLd from "@/components/JsonLd";
-import { Progress, Cursor } from "@/components/FX";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import Footer from "@/components/Footer";
-import { SITE, PAGES } from "@/lib/content";
+import type { Metadata, Viewport } from 'next';
+import './globals.css';
+import { SITE } from '@/lib/site';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Motion from '@/components/Motion';
+import Cursor from '@/components/Cursor';
+import JsonLd from '@/components/JsonLd';
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: "DAEOL | AEO & GEO Agency: AI Search Optimization", template: "%s | DAEOL" },
-  description: "Get found and cited in ChatGPT, Gemini, Perplexity and Google. DAEOL is an AEO, GEO and SEO agency serving the USA, Canada, UK and Australia. Free audit.",
-  alternates: { canonical: "/" },
-  icons: {
-    icon: [{ url: "/favicon.svg" }, { url: "/icon.png", sizes: "512x512" }],
-    apple: "/apple-icon.png",
-    other: [{ rel: "icon", url: "/favicon.ico", sizes: "32x32" }],
-  },
-  openGraph: { siteName: "DAEOL", type: "website", images: ["/og-image.png"] },
-  twitter: { card: "summary_large_image", site: "@daeol", creator: "@daeol" },
-  robots: { index: true, follow: true },
+  title: { default: 'DAEOL | AEO & GEO Agency: AI Search Optimization', template: '%s | DAEOL' },
+  description: 'Get found and cited in ChatGPT, Gemini, Perplexity and Google. DAEOL is an AEO, GEO and SEO agency serving the USA, Canada, UK and Australia. Free audit.',
+  alternates: { canonical: '/' },
+  openGraph: { type: 'website', siteName: 'DAEOL', url: SITE.url },
+  twitter: { card: 'summary_large_image', site: SITE.twitter, creator: SITE.twitter },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 } },
 };
+export const viewport: Viewport = { themeColor: '#09318D', width: 'device-width', initialScale: 1 };
+
+const ORG = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': `${SITE.url}/#org`, name: 'DAEOL', url: SITE.url, email: SITE.email, logo: `${SITE.url}/logo-dark.png`, description: SITE.description, areaServed: ['US', 'CA', 'GB', 'AU'] },
+    { '@type': 'WebSite', '@id': `${SITE.url}/#site`, url: SITE.url, name: 'DAEOL', publisher: { '@id': `${SITE.url}/#org` } },
+    { '@type': 'ProfessionalService', name: 'DAEOL', url: SITE.url, serviceType: ['Answer Engine Optimization', 'Generative Engine Optimization', 'Search Engine Optimization'], areaServed: ['United States', 'Canada', 'United Kingdom', 'Australia'] },
+  ],
+};
+
+const BOOT = `document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.add('motion-failed')},4500);`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const org = { "@context":"https://schema.org","@graph":[
-    { "@type":"Organization","@id":`${SITE.url}/#org`,name:SITE.name,url:SITE.url,email:SITE.email,logo:`${SITE.url}/icon.png`,areaServed:["US","CA","GB","AU"],sameAs:[] /* TODO: add LinkedIn, X, Crunchbase */ },
-    { "@type":"WebSite",name:SITE.name,url:SITE.url,publisher:{"@id":`${SITE.url}/#org`} }] };
   return (
-      <html lang="en">
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" />
+        <script dangerouslySetInnerHTML={{ __html: BOOT }} />
+        <JsonLd data={ORG} />
+      </head>
       <body>
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
-        <JsonLd data={org} /><Progress /><Cursor /><Nav />{children}
-        <Footer site={SITE} pages={PAGES} />
-      </body></html>);
+        <a className="skip" href="#main">Skip to content</a>
+        <Motion />
+        <Cursor />
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
 }

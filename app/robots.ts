@@ -1,55 +1,14 @@
-import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/content";
+import type { MetadataRoute } from 'next';
+import { SITE } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: "/api/",
-      },
-      {
-        userAgent: "GPTBot",
-        allow: "/",
-        disallow: "/api/",
-      },
-      {
-        userAgent: "OAI-SearchBot",
-        allow: "/",
-        disallow: "/api/",
-      },
-      {
-        userAgent: "ChatGPT-User",
-        allow: "/",
-        disallow: "/api/",
-      },
-      {
-        userAgent: "ClaudeBot",
-        allow: "/",
-        disallow: "/api/",
-      },
-      {
-        userAgent: "Claude-SearchBot",
-        allow: "/",
-        disallow: "/api/",
-      },
-      {
-        userAgent: "PerplexityBot",
-        allow: "/",
-        disallow: "/api/",
-      },
-      {
-        userAgent: "Google-Extended",
-        allow: "/",
-        disallow: "/api/",
-      },
-      {
-        userAgent: "Applebot-Extended",
-        allow: "/",
-        disallow: "/api/",
-      },
+      { userAgent: '*', allow: '/', disallow: ['/api/'] },
+      // Explicitly welcome AI crawlers: this is an AEO/GEO agency.
+      { userAgent: ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Google-Extended', 'ClaudeBot', 'Bingbot'], allow: '/' },
     ],
     sitemap: `${SITE.url}/sitemap.xml`,
+    host: SITE.url,
   };
 }
